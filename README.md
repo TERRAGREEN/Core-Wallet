@@ -16,5 +16,5 @@ terragreen <command>
 ```
 for help in commands type following in cmd
 ```
-terragreen --v
+terragreen --help
 ```
