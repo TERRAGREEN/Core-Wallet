@@ -1,0 +1,31 @@
+{
+  "name": "teraagreen_cli",
+  "version": "1.0.0",
+  "description": "cli for terragreen",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --outDir bin"
+  },
+  "bin": {
+    "terragreen": "./bin/main.js"
+  },
+  "author": "virtual_technocrats",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.7.2",
+    "@types/node-fetch": "^2.5.0",
+    "@types/request": "^2.48.2",
+    "request": "^2.88.0",
+    "typescript": "^3.5.3",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/*.js.map": true,
+    "**/*.js": {
+      "when": "$(basename).ts"
+    }
+  }
+}
