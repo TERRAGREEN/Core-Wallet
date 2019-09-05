@@ -14,3 +14,7 @@ After linking, run following
 ```
 terragreen <command>
 ```
+for help in commands type following in cmd
+```
+terragreen --v
+```
