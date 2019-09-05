@@ -6,6 +6,7 @@ npm install webpack typescript --save
 ```
 npm link
 ```
+After linking, run following 
 ```
 terragreen <command>
 ```
