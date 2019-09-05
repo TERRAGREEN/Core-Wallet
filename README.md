@@ -2,11 +2,11 @@
 ```
 Terragreen Core-Wallet
 ```
-# Install
+### Install
 ```
 npm install webpack typescript --save 
 ```
-# Build
+### Build
 ```
 npm link
 ```
