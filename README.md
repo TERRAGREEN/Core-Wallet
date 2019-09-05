@@ -1,4 +1,7 @@
 # Core-Wallet
 Terragreen Core-Wallet
-#Install
-
+# Install
+npm install webpack typescript --save 
+# Build
+npm link
+terragreen <command>
