@@ -2,19 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var requestx = require("request");
 var crypto = require("crypto");
+var fs = require("fs");
+var chalk_1 = require("chalk");
 var api = /** @class */ (function () {
     function api(user) {
         this.user = user;
     }
     // POST
-    api.prototype.createWallet = function (WalletName, WalletPassword) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Wallet/Create', {
+    api.prototype.createWallet = function (Email) {
+        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Core/Create', {
             json: {
-                ApiKey: "XnzawXaYLb6tpUZQEHMWAQOzZ09QUFNWVEdSTlROWEhBU0g0",
-                SecretKey: "shwcRy2OphRXwxtTVzeva06xxnx4JgrMrPs0jitN7p5QUFNWVEdSTlROWEhBU0g0",
-                Email: null,
-                WalletName: WalletName,
-                WalletPassword: WalletPassword,
+                Email: Email,
             },
             headers: {
                 'Content-Type': 'application/json',
@@ -24,16 +22,26 @@ var api = /** @class */ (function () {
                 console.error(error);
                 return;
             }
-            console.log('\nresponse=>\n', body);
+            if (!fs.existsSync('./wallet')) {
+                fs.mkdirSync('wallet');
+            }
+            if (body.PrivateKey !== undefined) {
+                console.log('\n \n ', chalk_1.default.cyan('Please copy the private key given below in a secure location.'), ' \n\n', chalk_1.default.green(body.PrivateKey));
+                fs.writeFile('./wallet/' + Email + '.txt', body.PrivateKey, function (err) {
+                    if (err) {
+                    }
+                });
+            }
+            else {
+                //  console.log(body.Message);
+                console.log(chalk_1.default.red(body.Message));
+            }
         });
     };
-    api.prototype.WalletInitialize = function (WalletName, WalletPassword) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Wallet/Initialize', {
+    api.prototype.WalletInitialize = function (PrivateKey) {
+        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Core/Login', {
             json: {
-                ApiKey: "XnzawXaYLb6tpUZQEHMWAQOzZ09QUFNWVEdSTlROWEhBU0g0",
-                SecretKey: "shwcRy2OphRXwxtTVzeva06xxnx4JgrMrPs0jitN7p5QUFNWVEdSTlROWEhBU0g0",
-                WalletName: WalletName,
-                WalletPassword: WalletPassword,
+                PrivateKey: PrivateKey
             },
             headers: {
                 'Content-Type': 'application/json',
@@ -41,9 +49,13 @@ var api = /** @class */ (function () {
         }, function (error, res, body) {
             if (error) {
                 console.error(error);
-                return;
+                //return
             }
-            console.log('\nresponse=>\n', body);
+            if (body.Status === true) {
+                console.log('\n\n Hi! ', chalk_1.default.cyan(body.Data.userName), '\n\n Here is your token!  \n\n', chalk_1.default.green(body.Data.access_token));
+            }
+            else
+                console.log(chalk_1.default.red('Invalid Private Key'));
         });
     };
     api.prototype.TransactionSend = function (token, SendAddress, Amount) {
@@ -144,7 +156,14 @@ var api = /** @class */ (function () {
                 'Authorization': 'bearer ' + token,
             }
         }, function (something, request, response) {
-            console.log('\nresponse=>\n', response);
+            response = JSON.parse(response);
+            //  console.log('\nresponse=>\n', response.Status , typeof(response) );
+            if (response.Status === true) { //   console.log('\nres=>\n');
+                console.log('\n ', chalk_1.default.green(response.Message), '\nWallet Name: ', chalk_1.default.blue(response.Data.WalletName), '\n Balance: ', chalk_1.default.yellow(response.Data.Balance), '\n Locked Balance: ', chalk_1.default.yellow(response.Data.LockedBalance), '\n');
+            }
+            else {
+                console.log(chalk_1.default.red('Invalid Token'));
+            }
         });
     };
     api.prototype.getNewAddress = function (token) {
