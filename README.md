@@ -3,8 +3,14 @@
 ![semver](https://img.shields.io/badge/node-10.15.3-green)
 ![semver](https://img.shields.io/badge/terragreenCLI-1.0.0-blue)
 
+Terragreen Core-Wallet is a ligth node, which communicates with the full node. It maintains and keep track of trasaction. Also it provides two modes of operation towards user
 
-Terragreen Core-Wallet
+- testnet  
+- live account
+
+A Testnet wallet can be use for development and research purpose of the source code. Whle a live account allows to initiate transaction in our live network, whereas testnet do not.
+
+
 
 # Building and running the CLI interface
 Terragreen CLI can be executed on both Windows and Linux
