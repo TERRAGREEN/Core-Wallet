@@ -1,7 +1,9 @@
 # Source-Code
-```
+
+
+
 Terragreen Core-Wallet
-```
+
 # Building and running the CLI interface
 
 ## Install NodeJS
@@ -42,3 +44,6 @@ for help in commands type following in cmd
 ``` bash
 terragreen --help
 ```
+# License
+
+Trust Wallet Core is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
