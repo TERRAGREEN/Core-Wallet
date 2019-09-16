@@ -2,10 +2,14 @@
 ```
 Terragreen Core-Wallet
 ```
-### Install
-```
-npm install typescript --save 
-```
+### Prerequisite
+|Modules | Version|
+|--------|--------|
+|[Node](https://nodejs.org/en/)|12.7.2 or above|
+| [npm](https://docs.npmjs.com/about-npm-versions) |6.11.2 or above|
+
+
+
 ### Build
 ```
 npm link
