@@ -7,7 +7,11 @@
 Terragreen Core-Wallet
 
 # Building and running the CLI interface
-Terragreen CLI can run on both [windows](https://github.com/TERRAGREEN/Source-Code/blob/master/Windows-Setup-Guide.md) and [linux](https://github.com/TERRAGREEN/Source-Code/blob/master/Linux-Setup-Guide.md).
+Terragreen CLI can be executed on both Windows and Linux
+
+chooose the OS to start building 
+- [windows](https://github.com/TERRAGREEN/Source-Code/blob/master/Windows-Setup-Guide.md) 
+- [linux](https://github.com/TERRAGREEN/Source-Code/blob/master/Linux-Setup-Guide.md).
 
 # License
 
