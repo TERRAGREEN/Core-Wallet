@@ -1,20 +1,23 @@
 
-# Building and running the CLI interface on Windows
+# Building and running the CLI interface on Linux
 
 ## Install NodeJS
 
-Download and install the latest Long Term Support (LTS) version of NodeJS at: https://nodejs.org/. 
+```sh
+$ sudo apt-get update
+$ sudo apt-get install nodejs
+```
 
 ## Getting Started
 
 Clone this repository locally:
 
-``` bash
-git clone https://github.com/TERRAGREEN/Source-Code.git
+``` sh
+$ git clone https://github.com/TERRAGREEN/Source-Code.git
 ```
 
 Navigate to the Source-Code-master folder in a terminal:
-``` bash
+``` sh
 cd ./Source-Code-master
 ```
 
@@ -22,14 +25,14 @@ cd ./Source-Code-master
 
 From within the Source-Code-master directory run:
 
-``` bash
-npm install
+``` sh
+$ sudo apt-get install npm
 ```
 
 ## Build
 
-``` bash
-npm link
+``` sh
+$ export terragreen="$PATH:$HOME/./bin/main.js"
 ```
 
 
@@ -41,24 +44,24 @@ After linking, user can use terragreen as local varible to run in any folder via
 Let's start by creating your wallet:
 > **terragreen createWallet** _{ your email ID }_  
 
-``` bash
-terragreen createWallet  your@email.com  
+``` sh
+$ terragreen createWallet  your@email.com  
 ```
 
 ### Send
 send the TGN via following command :
 > **terragreen send** _{Token} {SendAddress} {Amount}_  
 
-``` bash
-terragreen send VQeoi7EADTk1Hwy_EP2I068v-k6hwTzBTbQvkoLtJrt0qQoUkepfLtNYkSegfU0NzlNO4atHrOrLD3JGtlh1rP6nEQmmFlimbPKtC16sG2fE9imUBQt8mUEN7GrEEk4aM01FUCCY12E017ZIDqd6XSIqs7aNqol0LHe8F6-zNr8fy6c-LuN4cJSywjtUWPirYCXZzRFKKwEHl3diY6d_s5TxGYEz8_VqAOrp4zWf7GlUKUbZlP8ROKYUL1t4KMsM_cNrF_Fkpi7nkhCurhMWsQdWQquQQPRreOh76bN50_ZAb-zvkJ9yuiWk3O1jdF6PoX_OpuzMZ2Ooj0074CzkpDLQd-QkpAYHmo71bCXxEm4 dac52a7303591a6924ab708c621adfad 10    
+``` sh
+$ terragreen send VQeoi7EADTk1Hwy_EP2I068v-k6hwTzBTbQvkoLtJrt0qQoUkepfLtNYkSegfU0NzlNO4atHrOrLD3JGtlh1rP6nEQmmFlimbPKtC16sG2fE9imUBQt8mUEN7GrEEk4aM01FUCCY12E017ZIDqd6XSIqs7aNqol0LHe8F6-zNr8fy6c-LuN4cJSywjtUWPirYCXZzRFKKwEHl3diY6d_s5TxGYEz8_VqAOrp4zWf7GlUKUbZlP8ROKYUL1t4KMsM_cNrF_Fkpi7nkhCurhMWsQdWQquQQPRreOh76bN50_ZAb-zvkJ9yuiWk3O1jdF6PoX_OpuzMZ2Ooj0074CzkpDLQd-QkpAYHmo71bCXxEm4 dac52a7303591a6924ab708c621adfad 10    
 ```
 
 ### Transaction Detail
 you can get yout transaction details via following command :
 > **terragreen gettransactiondetail** _{Token} {TransactionHash}_  
 
-``` bash
-terragreen gettransactiondetail VQeoi7EADTk1Hwy_EP2I068v-k6hwTzBTbQvkoLtJrt0qQoUkepfLtNYkSegfU0NzlNO4atHrOrLD3JGtlh1rP6nEQmmFlimbPKtC16sG2fE9imUBQt8mUEN7GrEEk4aM01FUCCY12E017ZIDqd6XSIqs7aNqol0LHe8F6-zNr8fy6c-LuN4cJSywjtUWPirYCXZzRFKKwEHl3diY6d_s5TxGYEz8_VqAOrp4zWf7GlUKUbZlP8ROKYUL1t4KMsM_cNrF_Fkpi7nkhCurhMWsQdWQquQQPRreOh76bN50_ZAb-zvkJ9yuiWk3O1jdF6PoX_OpuzMZ2Ooj0074CzkpDLQd-QkpAYHmo71bCXxEm4 denVExYD0qqpWA7ZeIjnhlvJGb0koLEsofUd7G4PHFZQUFNWVEdSTlROWEhBU0g0  
+``` sh
+$ terragreen gettransactiondetail VQeoi7EADTk1Hwy_EP2I068v-k6hwTzBTbQvkoLtJrt0qQoUkepfLtNYkSegfU0NzlNO4atHrOrLD3JGtlh1rP6nEQmmFlimbPKtC16sG2fE9imUBQt8mUEN7GrEEk4aM01FUCCY12E017ZIDqd6XSIqs7aNqol0LHe8F6-zNr8fy6c-LuN4cJSywjtUWPirYCXZzRFKKwEHl3diY6d_s5TxGYEz8_VqAOrp4zWf7GlUKUbZlP8ROKYUL1t4KMsM_cNrF_Fkpi7nkhCurhMWsQdWQquQQPRreOh76bN50_ZAb-zvkJ9yuiWk3O1jdF6PoX_OpuzMZ2Ooj0074CzkpDLQd-QkpAYHmo71bCXxEm4 denVExYD0qqpWA7ZeIjnhlvJGb0koLEsofUd7G4PHFZQUFNWVEdSTlROWEhBU0g0  
 ```
 
 
@@ -66,6 +69,6 @@ terragreen gettransactiondetail VQeoi7EADTk1Hwy_EP2I068v-k6hwTzBTbQvkoLtJrt0qQoU
 if you find any difficulty with the command's option, get help via following command :
 > **terragreen --help**  
 
-``` bash
-terragreen --help 
+``` sh
+$ terragreen --help 
 ```
