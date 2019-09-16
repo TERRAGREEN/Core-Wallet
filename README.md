@@ -2,7 +2,7 @@
 ```
 Terragreen Core-Wallet
 ```
-### Prerequisite
+## Prerequisite
 |Modules | Version|
 |--------|--------|
 |[Node](https://nodejs.org/en/)|12.7.2 or above|
@@ -10,7 +10,7 @@ Terragreen Core-Wallet
 
 
 
-### Build
+## Build
 ```
 npm link
 ```
