@@ -62,11 +62,6 @@ terragreen gettransactiondetail VQeoi7EADTk1Hwy_EP2I068v-k6hwTzBTbQvkoLtJrt0qQoU
 ```
 
 
-
-for help in commands type following in cmd
-``` bash
-terragreen --help
-```
 ### Help
 if you find any difficulty with the command's option, get help via following command :
 > **terragreen --help**  
