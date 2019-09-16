@@ -1,5 +1,7 @@
-# Source-Code
-![Github](https://img.shields.io/github/license/TERRAGREEN/Source-Code?style=plastic)
+# Source-Code 
+![Github](https://img.shields.io/github/license/TERRAGREEN/Source-Code)
+![semver](https://img.shields.io/badge/node-10.15.3-green)
+![semver](https://img.shields.io/badge/terragreenCLI-1.0.0-blue)
 
 
 Terragreen Core-Wallet
