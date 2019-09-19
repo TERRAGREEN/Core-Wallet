@@ -8,7 +8,7 @@ Terragreen Core-Wallet is a ligth node, which communicates with the full node. I
 - testnet  
 - live account
 
-A Testnet wallet can be use for development and research purpose of the source code. Whle a live account allows to initiate transaction in our live network, whereas testnet do not.
+A Testnet wallet can be use for development and research purpose of the source code. While a live account allows to initiate transaction in our live network, whereas testnet do not.
 
 
 
