@@ -7,6 +7,12 @@ var User = new api_1.api(argc[0]);
 switch (argc[0]) {
     // case 'refreshtoken': User.RefreshToken(argc[1], argc[2]);
     //     break;
+    case 'createAPIkey':
+        User.createApiKey(argc[1],argc[2],argc[3],argc[4]);
+        break;
+    case 'getAPIkey':
+        User.getApi(argc[1]);
+        break;
     case 'refreshtoken':
         User.RefreshToken(argc[1]);
         break;

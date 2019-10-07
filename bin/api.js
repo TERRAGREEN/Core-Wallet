@@ -6,11 +6,100 @@ var fs = require("fs");
 var os = require("os");
 var chalk_1 = require("chalk");
 var PATH = 'C:\\Users\\' + os.userInfo().username + '\\Desktop\\wallet';
+var PATHSK = 'C:\\Users\\' + os.userInfo().username + '\\Desktop\\API_SK';
+
 var api = /** @class */ (function () {
     function api(user) {
         this.user = user;
     }
     // POST
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\\
+
+
+    api.prototype.createApiKey = function (token, NotificationUrl, WebsiteUrl, CompanyName) {
+        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Core//CreateApiKey', {
+            json: {
+                NotificationUrl: NotificationUrl,
+                WebsiteUrl: WebsiteUrl,
+                CompanyName: CompanyName,
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+
+            }
+        }, function (error, res, body) {
+
+            // body = JSON.parse(body);
+
+            if (error) {
+                console.error(error);
+                return;
+            }
+            if (!fs.existsSync(PATH)) {
+                fs.mkdirSync(PATH);
+            }
+            if (body.Status !== false) {
+
+                console.log('\n \n ', chalk_1.default.cyan('Your API Key is:'), ' \n\nAPI key:', chalk_1.default.green(body.Data.ApiKey),
+                    '\n SecretKey: ', body.Data.SecretKey,
+                    '\n NotificationUrl: ', body.Data.NotificationUrl,
+                    '\n WebsiteUrl: ', body.Data.WebsiteUrl,
+                    '\n CompanyName: ', body.Data.CompanyName,
+                    '\n IpAddress: ', body.Data.IpAddress,
+
+
+                );
+
+                console.log('\n \n ', chalk_1.default.cyan('Please copy the Secret key given below in a secure location.'), ' \n\n', chalk_1.default.cyan('Also we have stored your Secret key on location "C:/Users/a/Desktop/wallet'), ' \n\n', chalk_1.default.green(body.PrivateKey));
+                fs.writeFile(PATH + '\\SecretKey.txt', JSON.stringify(body), function (err) {
+                    if (err) {
+                    }
+                });
+
+            }
+            else {
+                console.log(chalk_1.default.red(body.Message));
+            }
+        });
+    };
+
+    //==========================================\\
+
+    api.prototype.getApi = function (token) {
+        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Core/GetApiKey', {
+
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+
+            }
+        }, function (error, res, body) {
+            if (error) {
+                console.error(error);
+                return;
+            }
+
+            body = JSON.parse(body);
+            if (body.Data[0] !== undefined) {
+                console.log('\n \n ', chalk_1.default.cyan('API key details are: '), ' \n\n ApiKey: ', chalk_1.default.green(JSON.stringify(body.Data[0].ApiKey)),
+                    '\n NotificationUrl: ', body.Data[0].NotificationUrl,
+                    '\n WebsiteUrl: ', body.Data[0].WebsiteUrl,
+                    '\n CompanyName: ', body.Data[0].CompanyName,
+                    '\n IpAddress: ', body.Data[0].IpAddress,
+
+
+                );
+
+            }
+            else {
+                //  console.log(body.Message);
+                console.log(chalk_1.default.red('You have not created API key yet.'));
+            }
+        });
+    };
+    //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\\
+
     api.prototype.createWallet = function (Email) {
         requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Core/Create', {
             json: {
@@ -54,7 +143,7 @@ var api = /** @class */ (function () {
                 //return
             }
             if (body.Status === true) {
-                console.log(navigator);
+                //  console.log(navigator);
                 console.log('\n\n Hi! ', chalk_1.default.cyan(body.Data.userName), '\n\n Here is your token!  \n\n', chalk_1.default.green(body.Data.access_token));
             }
             else
@@ -276,91 +365,101 @@ var api = /** @class */ (function () {
         var help = [
             {
                 name: "Create wallet",
-                discription: "create Wallet Account",
+                discription: "Create wallet account.",
                 syntax: "terragreen createwallet <email Address> ",
             },
             {
                 name: "Login wallet",
-                discription: "Login Into Wallet",
+                discription: "Login into wallet.",
                 syntax: "terragreen login <private Key> ",
             },
             {
                 name: "Token ",
-                discription: "get New Access-token From Your Refresh-token To Access All Authorized Apis.",
+                discription: "Get new access-token from your refresh-token to access all authorized apis.",
                 syntax: "terragreen refreshtoken <token>",
             },
             {
                 name: "Wallet balance",
-                discription: "get Wallet Balance",
+                discription: "Get wallet balance.",
                 syntax: "terragreen getbalance <token>",
             },
             {
-                name: "get All Rates",
-                discription: "to Get Rate Of Tgn Coin",
+                name: "Get all rates",
+                discription: "To get all rates of tgn coin.",
                 syntax: "terragreen getallrates",
             },
             {
-                name: "get Rate",
-                discription: "get Tgcoin's Current Rates.",
+                name: "Get rate",
+                discription: "Get tgcoin's current rate.",
                 syntax: "terragreen getrate",
             },
             {
-                name: "get New Address",
-                discription: "get New Receive Address.",
-                syntax: "terragreen Getnewaddress <token>",
+                name: "Get new address",
+                discription: "Get new receive address.",
+                syntax: "terragreen getnewaddress <token>",
             },
             {
-                name: "transaction Send",
-                discription: "send Amount To Other User's Wallet.",
-                syntax: "terragreen Send <token> <sendaddress> <amount>",
+                name: "Transaction send",
+                discription: "Send amount to other user's wallet.",
+                syntax: "terragreen send <token> <sendaddress> <amount>",
             },
             {
-                name: "get Transaction List",
-                discription: "get Transaction List Of The User.",
-                syntax: "terragreen Gettransactionlist <token>",
+                name: "Get transaction list",
+                discription: "Get transaction list of the user.",
+                syntax: "terragreen gettransactionlist <token>",
             },
             {
-                name: "verify Payment Status",
-                discription: "verify Transaction's Payment Status.",
-                syntax: "terragreen Verifypaymentstatus <token> <receiveaddress>",
+                name: "Verify payment status",
+                discription: "Get transaction's payment status.",
+                syntax: "terragreen verifypaymentstatus <token> <receiveaddress>",
             },
             {
-                name: "get Transaction Detail",
-                discription: "Get Transaction's Detail Of Given Transactionhash.",
-                syntax: "terragreen Gettransactiondetail <token> <transactionhash>",
+                name: "Get transaction detail",
+                discription: "Get transaction's detail of given transaction hash.",
+                syntax: "terragreen gettransactiondetail <token> <transactionhash>",
             },
             {
-                name: "get Blocks",
-                discription: "get Blocklist.",
-                syntax: "terragreen Getblocks",
+                name: "Get blocks",
+                discription: "Get blocklist.",
+                syntax: "terragreen getblocks",
             },
             {
-                name: "get Blocks Details",
-                discription: "get Block Details.",
-                syntax: "terragreen Getblockdetails <token> <blockid>",
+                name: "Get blocks details",
+                discription: "Get block details.",
+                syntax: "terragreen getblockdetails <token> <blockid>",
             },
             {
-                name: "get Latest Blocks",
-                discription: "gets Latest Block List.",
-                syntax: "terragreen Getlatestblocks <token>",
+                name: "Get latest blocks",
+                discription: "Get latest blocks list.",
+                syntax: "terragreen getlatestblocks <token>",
             },
             {
-                name: "get Address balance",
-                discription: "getaddressbalance.",
+                name: "Get address balance",
+                discription: "Get address balance.",
                 syntax: "terragreen getaddressbalance <token> <address>",
             },
             {
-                name: "get Transaction list by address",
-                discription: "gettransactionlistbyaddress.",
+                name: "Get transaction list by address",
+                discription: "Get transaction list by address.",
                 syntax: "terragreen gettransactionlistbyaddress <token> <address> <starting-index> <ending-index>",
             },
             {
-                name: "get Block number",
-                discription: "getblocknumber.",
+                name: "Get block number",
+                discription: "Get latest block number.",
                 syntax: "terragreen getblocknumber <token>",
             },
+            {
+                name: "Create api key",
+                discription: "Create API key.",
+                syntax: "terragreen createAPIkey <token> <NotificationUrl> <WebsiteUrl> <CompanyName>",
+            },
+            {
+                name: "get api key",
+                discription: "Get api key.",
+                syntax: "terragreen getAPIkey <token>",
+            },
         ];
-        var argument = ["privatekey", "token", "address", "amount", "sendaddress", "recieveaddress", "transactionhash", "blockid"];
+        var argument = ["privatekey", "token", "address", "amount", "sendaddress", "recieveaddress", "transactionhash", "blockid", "NotificationUrl", "WebsiteUrl", "CompanyName"];
         var usageview = "\n";
         var descriptiion = "\n";
         var argumentview = "\n";
@@ -369,7 +468,7 @@ var api = /** @class */ (function () {
         });
         help.forEach(function (e) {
             usageview = usageview + "  " + e.syntax + "\n";
-            descriptiion = descriptiion + "  " + e.name + ": " + e.discription + "\n";
+            descriptiion = descriptiion + "  " + e.name + " : " + e.discription + "\n";
         });
         var helpview = "\n Usage: " + usageview + "\n Arguments: " + argumentview
             + "\n Descriptiion: " + descriptiion;
