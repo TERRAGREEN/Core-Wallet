@@ -27,5 +27,8 @@
     "**/*.js": {
       "when": "$(basename).ts"
     }
+  },
+  "dependencies": {
+    "crypto-js": "^3.1.9-1"
   }
 }

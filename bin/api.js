@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var requestx = require("request");
-var crypto = require("crypto");
 var fs = require("fs");
 var os = require("os");
+var CryptoJS = require("crypto-js");
 var chalk_1 = require("chalk");
 var PATH = 'C:\\Users\\' + os.userInfo().username + '\\Desktop\\wallet';
 var PATHSK = 'C:\\Users\\' + os.userInfo().username + '\\Desktop\\API_SK';
@@ -17,7 +17,7 @@ var api = /** @class */ (function () {
 
 
     api.prototype.createApiKey = function (token, NotificationUrl, WebsiteUrl, CompanyName) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Core//CreateApiKey', {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/api/Core//CreateApiKey', {
             json: {
                 NotificationUrl: NotificationUrl,
                 WebsiteUrl: WebsiteUrl,
@@ -67,7 +67,7 @@ var api = /** @class */ (function () {
     //==========================================\\
 
     api.prototype.getApi = function (token) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Core/GetApiKey', {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/api/Core/GetApiKey', {
 
             headers: {
                 'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ var api = /** @class */ (function () {
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\\
 
     api.prototype.createWallet = function (Email) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Core/Create', {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/api/Core/Create', {
             json: {
                 Email: Email,
             },
@@ -130,7 +130,7 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.WalletInitialize = function (PrivateKey) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Core/Login', {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/api/Core/Login', {
             json: {
                 PrivateKey: PrivateKey
             },
@@ -151,7 +151,7 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.TransactionSend = function (token, SendAddress, Amount) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Transaction/Send', {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/api/Transaction/Send', {
             json: {
                 SendAddress: SendAddress,
                 Amount: Amount,
@@ -176,7 +176,7 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.VerifyPaymentStatus = function (token, ReceiveAddress) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Transaction/VerifyPaymentStatus', {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/api/Transaction/VerifyPaymentStatus', {
             json: {
                 ReceiveAddress: ReceiveAddress,
             },
@@ -193,7 +193,7 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.GetTransactionDetail = function (token, TransactionHash) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Transaction/GetTransactionDetail', {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/api/Transaction/GetTransactionDetail', {
             json: {
                 TransactionHash: TransactionHash,
             },
@@ -210,7 +210,7 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.GetTransactionList = function (token) {
-        requestx.get(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + "/api/Transaction/GetTransactionList", {
+        requestx.get(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + "/api/Transaction/GetTransactionList", {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'bearer ' + token,
@@ -220,7 +220,7 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.GetBlockDetails = function (token, BlockId) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + "/api/Block/GetBlockDetails", {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + "/api/Block/GetBlockDetails", {
             json: {
                 BlockId: parseInt(BlockId),
             },
@@ -233,7 +233,7 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.GetWalletAddressBalance = function (token, WalletAddress) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + "/api/Wallet/AddressBalance", {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + "/api/Wallet/AddressBalance", {
             json: {
                 WalletAddress: WalletAddress,
             },
@@ -246,7 +246,7 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.GetTransactionListByAddress = function (token, WalletAddress, PageIndex, Pagesize) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + "/api/Transaction/TransactionListByAddress", {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + "/api/Transaction/TransactionListByAddress", {
             json: {
                 WalletAddress: WalletAddress,
                 PageIndex: isNaN(PageIndex) ? 1 : PageIndex,
@@ -262,7 +262,7 @@ var api = /** @class */ (function () {
     };
     // GET
     api.prototype.GetLatestBlocks = function (token) {
-        requestx.get(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + "/api/Block/GetLatestBlocks", {
+        requestx.get(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + "/api/Block/GetLatestBlocks", {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'bearer ' + token,
@@ -272,12 +272,12 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.GetAllRates = function () {
-        requestx.get(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + "/api/Rate/GetAllRates", function (something, request, response) {
+        requestx.get(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + "/api/Rate/GetAllRates", function (something, request, response) {
             console.log('\nresponse=>\n', response);
         });
     };
     api.prototype.getBalance = function (token) {
-        requestx.get(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + "/api/Wallet/Balance", {
+        requestx.get(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + "/api/Wallet/Balance", {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'bearer ' + token,
@@ -294,7 +294,7 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.getNewAddress = function (token) {
-        requestx.get(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + "/api/Transaction/GetNewAddress", {
+        requestx.get(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + "/api/Transaction/GetNewAddress", {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'bearer ' + token,
@@ -304,12 +304,12 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.apitest = function () {
-        requestx.get(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + "/api/Rate/GetRate", function (something, request, response) {
-            console.log('\nresponse=>\n', response);
+        requestx.get(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + "/api/Rate/GetRate", function (something, request, response) {
+            console.log('\nresponse=>\n', response , );
         });
     };
     api.prototype.apitest2 = function (token) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Block/GetBlocks', {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/api/Block/GetBlocks', {
             json: {
                 StartIndex: 1,
                 EndIndex: 20,
@@ -327,7 +327,7 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.GetBlockNumber = function (token) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/api/Block/GetBlocks', {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/api/Block/GetBlocks', {
             json: {
                 StartIndex: 1,
                 EndIndex: 1,
@@ -345,7 +345,7 @@ var api = /** @class */ (function () {
         });
     };
     api.prototype.RefreshToken = function (refresh_token) {
-        requestx.post(crypto.createDecipher("aes-256-gcm", '4vdf4s84r235fse5').update('0323941a59b1c2e0efac954880141112548fe86a50c852464b', "hex", "binary") + '/Token', {
+        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/Token', {
             json: {
                 grant_type: "refresh_token",
                 refresh_token: refresh_token,
