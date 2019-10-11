@@ -52,7 +52,7 @@ Let's start by creating your wallet:
 > **terragreen createWallet** _{ your email ID }_  
 
 ``` sh
-$terragreen createWallet  your@email.com  
+$terragreen createWallet  
 ```
 
 ### Send
