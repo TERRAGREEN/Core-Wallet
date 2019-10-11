@@ -153,7 +153,7 @@ var api = /** @class */ (function () {
             }
             if (body.PrivateKey !== undefined) {
                 console.log('\n \n ', chalk_1.default.cyan('Please copy the private key given below in a secure location.'), ' \n\n', '\n \n ', chalk_1.default.cyan('Also we have stored your Privare key on location "C:/Users/a/Desktop/wallet'), ' \n\n', chalk_1.default.green(body.PrivateKey));
-                fs.writeFile(PATH + '\\' + answers.Email + '.txt', body.PrivateKey + '\n WalletIdentifier'+answers.Username, function (err) {
+                fs.writeFile(PATH + '\\' + answers.Email + '.txt', body.PrivateKey + '\n\n\n WalletIdentifier:  '+answers.Username, function (err) {
                     if (err) {
                     }
                 });
