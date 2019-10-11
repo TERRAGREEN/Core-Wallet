@@ -20,7 +20,7 @@ switch (argc[0]) {
         User.WalletInitialize(argc[1]);
         break;
     case 'createwallet':
-        User.createWallet(argc[1]);
+        User.createWallet(argc[1],argc[2],argc[3],argc[4]);
         break;
     case 'send':
         User.TransactionSend(argc[1], argc[2], argc[3]);

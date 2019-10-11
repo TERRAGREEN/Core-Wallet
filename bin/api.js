@@ -7,6 +7,7 @@ var CryptoJS = require("crypto-js");
 var chalk_1 = require("chalk");
 var PATH = 'C:\\Users\\' + os.userInfo().username + '\\Desktop\\wallet';
 var PATHSK = 'C:\\Users\\' + os.userInfo().username + '\\Desktop\\API_SK';
+var inquirer = require('inquirer');
 
 var api = /** @class */ (function () {
     function api(user) {
@@ -100,10 +101,44 @@ var api = /** @class */ (function () {
     };
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\\
 
-    api.prototype.createWallet = function (Email) {
-        requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/api/Core/Create', {
+    api.prototype.createWallet = function (Email,username,password,cpassword) {
+
+
+        inquirer
+        .prompt([
+          {
+            name: 'Username',
+            message: 'WalletIdentifier: ',
+          },
+          {
+            name: 'Email',
+            message: 'Email: ',
+            // default: '',
+          },
+          {
+            name: 'password',
+            type:'password',
+            message: 'password: ',
+       
+          },
+          {
+            name: 'cpassword',
+            type:'password',
+            message: 'Confirm password: ',
+         
+          },
+        ])
+        .then(answers => {
+          console.info('Verifying...');
+
+          requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/api/Core/Create', {
             json: {
-                Email: Email,
+                Email: answers.Email,
+                WalletIdentifier: answers.Username,
+                 Password: answers.password,
+                 ConfirmPassword: answers.cpassword
+               
+
             },
             headers: {
                 'Content-Type': 'application/json',
@@ -118,7 +153,7 @@ var api = /** @class */ (function () {
             }
             if (body.PrivateKey !== undefined) {
                 console.log('\n \n ', chalk_1.default.cyan('Please copy the private key given below in a secure location.'), ' \n\n', '\n \n ', chalk_1.default.cyan('Also we have stored your Privare key on location "C:/Users/a/Desktop/wallet'), ' \n\n', chalk_1.default.green(body.PrivateKey));
-                fs.writeFile(PATH + '\\' + Email + '.txt', body.PrivateKey, function (err) {
+                fs.writeFile(PATH + '\\' + answers.Email + '.txt', body.PrivateKey + '\n WalletIdentifier'+answers.Username, function (err) {
                     if (err) {
                     }
                 });
@@ -128,6 +163,9 @@ var api = /** @class */ (function () {
                 console.log(chalk_1.default.red(body.Message));
             }
         });
+        });
+
+
     };
     api.prototype.WalletInitialize = function (PrivateKey) {
         requestx.post(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + '/api/Core/Login', {
@@ -305,7 +343,7 @@ var api = /** @class */ (function () {
     };
     api.prototype.apitest = function () {
         requestx.get(CryptoJS.AES.decrypt(`U2FsdGVkX19UBT5MqgrBo2tMkQIq2V2+RG/hWxB1qqLf9cuB5DNlYVLpHINNOAf+`, 'U2FsdGVkX19dK8FTXToeTlRmcHAgVDGG5q1tXCxIlOZuvOvSyeqSgSy7u3C3Wzct').toString(CryptoJS.enc.Utf8) + "/api/Rate/GetRate", function (something, request, response) {
-            console.log('\nresponse=>\n', response , );
+            console.log('\nresponse=>\n', response);
         });
     };
     api.prototype.apitest2 = function (token) {
