@@ -31,8 +31,15 @@ $ sudo apt-get install npm
 
 ## Build
 
+Copy the current directory path using pwd
+
 ``` sh
-$ export terragreen="$PATH:$HOME/./bin/main.js"
+$ pwd
+``` 
+Now use this path to make it a environment variable i.e 
+
+``` sh
+$ export terragreen="node {PATH FROM PWD}/bin/main.js"
 ```
 
 
