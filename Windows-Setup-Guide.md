@@ -13,9 +13,9 @@ Clone this repository locally:
 git clone https://github.com/TERRAGREEN/Source-Code.git
 ```
 
-Navigate to the Source-Code-master folder in a terminal:
+Navigate to the Source-Code folder in a terminal:
 ``` bash
-cd ./Source-Code-master
+cd ./Source-Code
 ```
 
 ## Install dependencies with npm:
