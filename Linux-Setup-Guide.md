@@ -49,11 +49,23 @@ After linking, user can use terragreen as local varible to run in any folder via
 
 ### Create Account
 Let's start by creating your wallet:
-> **terragreen createWallet** _{ your email ID }_  
+> **terragreen createWallet**  
 
 ``` sh
 $terragreen createWallet  
 ```
+executing the above command we get
+
+``` sh
+$terragreen createWallet
+? WalletIdentifier: <your walletidentifier>
+? Email:  <your emali>
+? Password: <your password>
+? Confirm password:  <confirm your password>
+```
+
+
+
 
 ### Send
 send the TGN via following command :
