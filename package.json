@@ -17,8 +17,8 @@
     "@types/request": "^2.48.2",
     "request": "^2.88.0",
     "typescript": "^3.5.3",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "files.exclude": {
     "**/.git": true,
